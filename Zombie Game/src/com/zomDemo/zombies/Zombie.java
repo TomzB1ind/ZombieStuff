@@ -1,6 +1,8 @@
 package com.zomDemo.zombies;
 
 import com.zomDemo.Player;
+import com.zomDemo.guns.Bullet;
+
 import java.awt.*;
 
 /**
@@ -22,19 +24,27 @@ public class Zombie {
     public void move(Player player){
         Rectangle pBounds = player.getBounds();
         act(player);
-        if (inSight(pBounds)) {
-            if (pBounds.x > bounds.x) {
-                bounds.x += speed;
+        if (player.alive) {
+            if (inSight(pBounds)) {
+                if (pBounds.x > bounds.x) {
+                    bounds.x += speed;
+                }
+                if (pBounds.x < bounds.x) {
+                    bounds.x -= speed;
+                }
+                if (pBounds.y > bounds.y) {
+                    bounds.y += speed;
+                }
+                if (pBounds.y < bounds.y) {
+                    bounds.y -= speed;
+                }
             }
-            if (pBounds.x < bounds.x) {
-                bounds.x -= speed;
-            }
-            if (pBounds.y > bounds.y) {
-                bounds.y += speed;
-            }
-            if (pBounds.y < bounds.y) {
-                bounds.y -= speed;
-            }
+        }
+        if (Math.random()< .1){
+            double vx = (Math.random()*-10)+5;
+            double vy = (Math.random()*-10)+5;
+            bounds.x += vx;
+            bounds.y += vy;
         }
     }
     public boolean contains(Rectangle rect){
@@ -52,4 +62,9 @@ public class Zombie {
         else
             return false;
     }
+
+    public Rectangle getBounds(){
+        return bounds;
+    }
+
 }
