@@ -10,13 +10,13 @@ public class Player {
     Rectangle bounds;
     double vx , vy, accel;
     int maxspeed;
-    private boolean alive;
+    public boolean alive;
     public Player(){
         bounds = new Rectangle(20, 20, 10, 10);
         alive = true;
         vx = 0;
         vy = 0;
-        maxspeed = 3;
+        maxspeed = 5;
         accel = .5;
     }
     public void draw(Graphics g){
